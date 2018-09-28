@@ -15,6 +15,7 @@ require(graphics)
 require(glmnet)
 
 #setup
+
 #working directory
 setwd("C:/Users/aglowka/Desktop/QP2/new_QP2/stats")
 
@@ -581,7 +582,6 @@ anova(dual.freq.item.slope.m, dual.freq.subj.item.slope.m)
 
 #*** logit slopes ***
 
-
 dual.logit.subj.slope.m = lmer(RT.log ~ FreqABCD.log.std +
                           LogitABCD.neg.log.std +
                           MIABCD.neg.log.std +
@@ -741,7 +741,6 @@ dotplot(fixef(dual.best.m,condVar=TRUE),
 dotplot(ranef(dual.best.m,condVar=TRUE),
         lattice.options=list(layout=c(1,2)))
 
-
 ###################
 
 #regression data extraction
@@ -759,7 +758,6 @@ setwd("D:/Q2_bootstraps/main_analysis/as_main")
 source("lmer-data-extract-boot-fnc.R") #selected lmer results extractor
 
 # divert messages stream to file, so you can log warnings and track non-converged models
-
 options(warn=1)
 wngs=file("warnings_log.txt",open="w+",blocking=TRUE)
 sink(wngs,type="message")
@@ -837,14 +835,9 @@ for(iter in 1:3){
   write.csv(as.data.frame(dual.mod@optinfo$derivs$Hessian), paste("dual.m.hessian_", iter, ".csv", sep=""))
   write(unlist(dual.mod@optinfo$conv$lme4$messages), paste("dual.m.warnings_", iter, ".txt", sep=""))
   
-  
   cat("Bagging iteration", iter, "completed!\n")
   
 }
 
 #close log file & restore warnings stream to console
 closeAllConnections()
-
-##################################
-
-
